@@ -1986,3 +1986,96 @@ div#gameLoad.fullscreen {
     overflow: hidden;
   }
 }
+
+@media (max-width: 1368px) {
+  :root {
+    --width-content: 100%;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .list-item {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .game-desc1-left {
+    width: 100%;
+  }
+
+  .game-desc-right {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .list-item {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .game-content .game-frame {
+    height: 450px;
+  }
+
+  nav ul {
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    background: var(--bg-header-color);
+    text-align: center;
+    transition: all 0.5s;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 20px 0;
+    line-height: 30px;
+  }
+
+  .togglebtn {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .list-item {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .game-content .game-frame {
+    height: 350px;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .form-control {
+    width: 90%;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 375px) {
+  .list-item {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    height: 160px;
+  }
+
+  .game-content .game-frame {
+    height: 250px;
+  }
+}
