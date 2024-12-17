@@ -74,6 +74,16 @@ label.logo {
 
 .logo img {
   height: 70px;
+  position: relative;
+  animation: logoGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+  transition: all 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) brightness(1.2)
+    contrast(1.1);
 }
 
 nav {
@@ -186,6 +196,7 @@ nav ul li a:hover {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(6, 195px);
+  perspective: 1000px;
 }
 
 .item,
@@ -367,6 +378,7 @@ nav ul li a:hover {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  animation: float 3s ease-in-out infinite;
 }
 
 .recommend-title {
@@ -498,6 +510,7 @@ nav ul li a:hover {
   font-size: 26px;
   color: #fff;
   position: relative;
+  animation: rotate 4s linear infinite;
 }
 
 .game-play .play-button:before {
@@ -1087,6 +1100,7 @@ div#gameLoad.fullscreen {
   );
   box-shadow: 4px 4px 4px 0 hsla(0, 0%, 4%, 0.5), inset 0 0 15px -2px #03a9f4,
     inset 0 0 0 3px #03a9f4;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .list-categories-home .tag-card:before {
@@ -2077,5 +2091,536 @@ div#gameLoad.fullscreen {
 
   .game-content .game-frame {
     height: 250px;
+  }
+}
+
+.game-desc {
+  margin: 1rem 0;
+}
+
+.game-desc-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-desc-content {
+  color: #fff;
+}
+
+.game-desc-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-desc-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.game-desc-section:hover {
+  transform: translateY(-5px);
+}
+
+.game-desc-section h2 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.game-desc-section p {
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.game-desc-intro {
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: center;
+  color: #ffd700;
+}
+
+@media (max-width: 768px) {
+  .game-desc-container {
+    padding: 1rem;
+    margin: 0 1rem;
+  }
+
+  .game-desc-title {
+    font-size: 2rem;
+  }
+
+  .game-desc-section {
+    padding: 0.8rem;
+  }
+}
+
+/* Hiệu ứng lắc lư cho logo */
+.logo img {
+  animation: wobble 3s ease-in-out infinite;
+}
+
+/* Hiệu ứng nổi lên xuống cho các game item */
+.game-item {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Hiệu ứng xoay nhẹ cho play button */
+.play-button {
+  animation: rotate 4s linear infinite;
+}
+
+/* Hiệu ứng pulse cho tag categories */
+.tag-card {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Định nghĩa các keyframes */
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-3deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(3deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Thêm hover effect cho các element có animation */
+.logo img:hover,
+.game-item:hover,
+.play-button:hover,
+.tag-card:hover {
+  animation-play-state: paused;
+}
+
+/* Tối ưu performance bằng cách chỉ animate transform và opacity */
+.logo img,
+.game-item,
+.play-button,
+.tag-card {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Media query để tắt animation trên thiết bị di đ���ng để tăng performance */
+@media (prefers-reduced-motion: reduce) {
+  .logo img,
+  .game-item,
+  .play-button,
+  .tag-card {
+    animation: none;
+  }
+}
+
+/* Hiệu ứng phát sáng cho logo */
+@keyframes logoGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) brightness(1.2);
+  }
+}
+
+/* Thêm pseudo-element để tạo hiệu ứng tỏa sáng */
+.logo::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: logoRadiate 4s ease-in-out infinite;
+}
+
+@keyframes logoRadiate {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Hiệu ứng cho list items container */
+.list-item {
+  perspective: 1000px;
+}
+
+/* Hiệu ứng cho từng item */
+.list-item .item {
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+/* Hover effect cho items */
+.list-item .item:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(3, 169, 244, 0.4);
+  z-index: 1;
+}
+
+/* Hiệu ứng cho hình ảnh trong item */
+.list-item .item .image img {
+  transition: all 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.list-item .item:hover .image img {
+  transform: scale(1.1);
+}
+
+/* Hiệu ứng cho content/title */
+.list-item .item .content {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  transform: translateY(100%);
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+
+.list-item .item:hover .content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Hiệu ứng shine khi hover */
+.list-item .item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  z-index: 1;
+}
+
+.list-item .item:hover::before {
+  left: 150%;
+}
+
+/* Stagger animation cho items khi load */
+.list-item .item {
+  animation: itemAppear 0.6s ease backwards;
+}
+
+@keyframes itemAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Áp dụng delay cho từng item */
+.list-item .item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.list-item .item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.list-item .item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.list-item .item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+/* ... thêm delay cho các item khác nếu cần */
+
+/* Tối ưu performance */
+.list-item .item {
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Media queries cho responsive */
+@media (max-width: 768px) {
+  .list-item .item:hover {
+    transform: translateY(-5px) scale(1.03);
+  }
+
+  .list-item .item .content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Privacy Policy Page Styles */
+.privacy-content {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.privacy-content h1 {
+  color: #4caf50;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.privacy-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.privacy-section:hover {
+  transform: translateY(-5px);
+}
+
+.privacy-section h2 {
+  color: #4caf50;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.privacy-section p,
+.privacy-section li {
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.privacy-section ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .privacy-content {
+    margin: 80px 20px;
+    padding: 15px;
+  }
+
+  .privacy-content h1 {
+    font-size: 2em;
+  }
+
+  .privacy-section {
+    padding: 15px;
+  }
+}
+
+/* Terms of Use Page Styles */
+.terms-content {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.terms-content h1 {
+  color: #4caf50;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.terms-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.terms-section:hover {
+  transform: translateY(-5px);
+}
+
+.terms-section h2 {
+  color: #4caf50;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.terms-section p,
+.terms-section li {
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.terms-section ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .terms-content {
+    margin: 80px 20px;
+    padding: 15px;
+  }
+
+  .terms-content h1 {
+    font-size: 2em;
+  }
+
+  .terms-section {
+    padding: 15px;
+  }
+}
+
+.ad-container {
+  width: 100%;
+  max-width: 728px;
+  margin: 20px auto;
+  min-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ad-728x90 {
+  width: 728px;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .ad-container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .ad-728x90 {
+    width: 100%;
+    height: auto;
+    min-height: 90px;
+  }
+}
+
+.ad-sidebar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 600px;
+  z-index: 2;
+  display: none; /* Ẩn mặc định trên mobile */
+}
+
+.ad-left {
+  left: 0;
+}
+
+.ad-right {
+  right: 0;
+}
+
+.ad-600x300 {
+  width: 300px;
+  height: 600px;
+  background: rgba(237, 232, 232, 0.05);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Chỉ hiện quảng cáo khi màn hình đủ rộng */
+@media (min-width: 1600px) {
+  .ad-sidebar {
+    display: block;
+  }
+
+  .ad-left {
+    left: calc((100% - 1850px) / 2 - 310px);
+  }
+
+  .ad-right {
+    right: calc((100% - 1850px) / 2 - 310px);
   }
 }
